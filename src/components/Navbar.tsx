@@ -1,0 +1,110 @@
+import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+
+const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#stats' },
+    { name: 'Corporations', href: '#corporations' },
+    { name: 'Killboard', href: 'https://zkillboard.com/alliance/99013780/', external: true },
+    { name: 'Join', href: '#recruitment' },
+  ];
+
+  return (
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'glass-dark shadow-lg shadow-advent-red/10' : 'bg-transparent'
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 gradient-red clip-hexagon flex items-center justify-center animate-pulse-glow">
+              <span className="font-exo font-black text-primary-foreground text-sm">AC</span>
+            </div>
+            <span className="font-exo font-bold text-lg tracking-widest text-foreground hidden sm:block">
+              ADVENT COALITION
+            </span>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                target={link.external ? '_blank' : undefined}
+                rel={link.external ? 'noopener noreferrer' : undefined}
+                className="font-rajdhani font-semibold text-sm tracking-wider text-muted-foreground hover:text-primary transition-colors relative group"
+              >
+                {link.name.toUpperCase()}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+              </a>
+            ))}
+          </div>
+
+          {/* CTA Button */}
+          <div className="hidden md:flex items-center gap-4">
+            <a
+              href="https://discord.gg/your-invite"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="gradient-red px-5 py-2 rounded font-rajdhani font-bold text-sm tracking-wider text-primary-foreground hover:scale-105 transition-transform glow-border"
+            >
+              JOIN DISCORD
+            </a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 text-foreground"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden glass-dark">
+          <div className="px-4 py-6 space-y-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                target={link.external ? '_blank' : undefined}
+                rel={link.external ? 'noopener noreferrer' : undefined}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block font-rajdhani font-semibold text-lg tracking-wider text-foreground hover:text-primary"
+              >
+                {link.name.toUpperCase()}
+              </a>
+            ))}
+            <a
+              href="https://discord.gg/your-invite"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block gradient-red px-5 py-3 rounded font-rajdhani font-bold text-center tracking-wider text-primary-foreground"
+            >
+              JOIN DISCORD
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* Bottom border glow */}
+      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
+    </nav>
+  );
+};
+
+export default Navbar;
