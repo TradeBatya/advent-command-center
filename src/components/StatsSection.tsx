@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { Users, Building2, Star, Crosshair, TrendingUp, Coins } from 'lucide-react';
+import { useSettings } from '@/contexts/SettingsContext';
 
 const StatsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useSettings();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -18,15 +20,15 @@ const StatsSection = () => {
   }, []);
 
   const stats = [
-    { icon: Users, value: 287, label: 'ACTIVE PILOTS', trend: '+8%' },
-    { icon: Building2, value: 8, label: 'CORPORATIONS', trend: '+2' },
-    { icon: Star, value: 8, label: 'STAR SYSTEMS', trend: 'Growing' },
+    { icon: Users, value: 287, label: t('stats.activePilots'), trend: '+8%' },
+    { icon: Building2, value: 8, label: t('stats.corporations'), trend: '+2' },
+    { icon: Star, value: 8, label: t('stats.starSystems'), trend: 'Growing' },
   ];
 
   const miniStats = [
-    { icon: Crosshair, value: '12.4K', label: 'Total Kills' },
-    { icon: Coins, value: '890B', label: 'ISK Destroyed' },
-    { icon: TrendingUp, value: '82%', label: 'Fleet Efficiency' },
+    { icon: Crosshair, value: '12.4K', label: t('stats.totalKills') },
+    { icon: Coins, value: '890B', label: t('stats.iskDestroyed') },
+    { icon: TrendingUp, value: '82%', label: t('stats.fleetEfficiency') },
   ];
 
   const AnimatedCounter = ({ target, isVisible }: { target: number; isVisible: boolean }) => {
@@ -71,10 +73,10 @@ const StatsSection = () => {
         {/* Title */}
         <div className="text-center mb-16">
           <h2 className="font-exo font-black text-4xl sm:text-5xl tracking-wider text-foreground mb-4">
-            COALITION <span className="text-primary">POWER</span>
+            {t('stats.title')} <span className="text-primary">{t('stats.titleAccent')}</span>
           </h2>
           <div className="w-24 h-1 gradient-red mx-auto mb-4" />
-          <p className="font-rajdhani text-muted-foreground tracking-wider">Real-time alliance metrics</p>
+          <p className="font-rajdhani text-muted-foreground tracking-wider">{t('stats.subtitle')}</p>
         </div>
 
         {/* Main Stats Grid */}
@@ -124,7 +126,7 @@ const StatsSection = () => {
             rel="noopener noreferrer"
             className="font-rajdhani text-sm text-primary hover:text-advent-red-bright transition-colors"
           >
-            View on zKillboard →
+            {t('stats.viewZkill')}
           </a>
           <a
             href="https://evemaps.dotlan.net/alliance/Advent%20Coalition"
@@ -132,7 +134,7 @@ const StatsSection = () => {
             rel="noopener noreferrer"
             className="font-rajdhani text-sm text-primary hover:text-advent-red-bright transition-colors"
           >
-            View on DOTLAN →
+            {t('stats.viewDotlan')}
           </a>
         </div>
       </div>

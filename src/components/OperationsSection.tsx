@@ -1,15 +1,18 @@
 import { Crosshair, Zap, Factory, Rocket, Map, TrendingUp, Radio, GraduationCap } from 'lucide-react';
+import { useSettings } from '@/contexts/SettingsContext';
 
 const OperationsSection = () => {
+  const { t } = useSettings();
+
   const operations = [
-    { icon: Crosshair, title: 'FLEET WARFARE', desc: 'Large-scale coordinated PvP operations', active: true },
-    { icon: Zap, title: 'SMALL GANG', desc: 'Elite strike teams & fast response', active: true },
-    { icon: Factory, title: 'INDUSTRIAL EMPIRE', desc: 'Capital manufacturing & logistics', active: true },
-    { icon: Rocket, title: 'CAPITAL OPS', desc: 'Capital ship deployments', active: true },
-    { icon: Map, title: 'SOVEREIGNTY', desc: 'Territory control & infrastructure', active: true },
-    { icon: TrendingUp, title: 'MARKET DOMINANCE', desc: 'Trade networks & ISK generation', active: true },
-    { icon: Radio, title: 'INTELLIGENCE', desc: 'Strategic reconnaissance', active: true },
-    { icon: GraduationCap, title: 'TRAINING', desc: 'Pilot development & mentorship', active: true },
+    { icon: Crosshair, titleKey: 'ops.fleetWarfare', descKey: 'ops.fleetWarfareDesc', active: true },
+    { icon: Zap, titleKey: 'ops.smallGang', descKey: 'ops.smallGangDesc', active: true },
+    { icon: Factory, titleKey: 'ops.industrial', descKey: 'ops.industrialDesc', active: true },
+    { icon: Rocket, titleKey: 'ops.capitalOps', descKey: 'ops.capitalOpsDesc', active: true },
+    { icon: Map, titleKey: 'ops.sovereignty', descKey: 'ops.sovereigntyDesc', active: true },
+    { icon: TrendingUp, titleKey: 'ops.market', descKey: 'ops.marketDesc', active: true },
+    { icon: Radio, titleKey: 'ops.intelligence', descKey: 'ops.intelligenceDesc', active: true },
+    { icon: GraduationCap, titleKey: 'ops.training', descKey: 'ops.trainingDesc', active: true },
   ];
 
   return (
@@ -20,7 +23,7 @@ const OperationsSection = () => {
         {/* Title */}
         <div className="text-center mb-16">
           <h2 className="font-exo font-black text-4xl sm:text-5xl tracking-wider text-foreground mb-4">
-            OPERATIONAL <span className="text-primary">CAPABILITIES</span>
+            {t('ops.title')} <span className="text-primary">{t('ops.titleAccent')}</span>
           </h2>
           <div className="w-24 h-1 gradient-red mx-auto" />
         </div>
@@ -29,7 +32,7 @@ const OperationsSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {operations.map((op, index) => (
             <div
-              key={op.title}
+              key={op.titleKey}
               className="glass gradient-border p-6 rounded-lg group hover:bg-primary/20 transition-all duration-300 relative overflow-hidden"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
@@ -39,8 +42,8 @@ const OperationsSection = () => {
               )}
               
               <op.icon className="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="font-rajdhani font-bold text-sm tracking-wider text-foreground mb-2">{op.title}</h3>
-              <p className="font-inter text-xs text-muted-foreground leading-relaxed">{op.desc}</p>
+              <h3 className="font-rajdhani font-bold text-sm tracking-wider text-foreground mb-2">{t(op.titleKey)}</h3>
+              <p className="font-inter text-xs text-muted-foreground leading-relaxed">{t(op.descKey)}</p>
             </div>
           ))}
         </div>

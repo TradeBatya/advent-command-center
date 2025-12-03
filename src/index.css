@@ -36,7 +36,7 @@
 
     --radius: 0.5rem;
 
-    /* Custom colors */
+    /* Custom colors - Red Theme (default) */
     --advent-red: 0 75% 47%;
     --advent-red-bright: 4 84% 63%;
     --advent-red-glow: 348 100% 64%;
@@ -48,6 +48,17 @@
     --cyan-glow: 191 100% 50%;
     --gold-highlight: 45 100% 51%;
     --purple-depth: 283 77% 38%;
+  }
+
+  /* Orange Theme */
+  :root[data-theme="orange"] {
+    --primary: 27 100% 50%;
+    --accent: 33 100% 50%;
+    --ring: 27 100% 50%;
+    --advent-red: 27 100% 50%;
+    --advent-red-bright: 36 100% 50%;
+    --advent-red-glow: 40 100% 55%;
+    --advent-red-dark: 24 100% 45%;
   }
 
   .dark {

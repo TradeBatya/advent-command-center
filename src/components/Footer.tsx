@@ -1,8 +1,23 @@
 import { ExternalLink, Mail } from 'lucide-react';
+import { useSettings } from '@/contexts/SettingsContext';
 
 const Footer = () => {
-  const quickLinks = ['Home', 'About', 'Corporations', 'Join', 'Rules'];
-  const resources = ['Killboard', 'Fleet Doctrines', 'SRP Guide', 'New Pilot Guide'];
+  const { t } = useSettings();
+
+  const quickLinks = [
+    { key: 'footer.home', href: '#home' },
+    { key: 'footer.about', href: '#stats' },
+    { key: 'footer.corporations', href: '#corporations' },
+    { key: 'footer.join', href: '#recruitment' },
+    { key: 'footer.rules', href: '#' },
+  ];
+
+  const resources = [
+    { key: 'footer.killboard', href: 'https://zkillboard.com/alliance/99013780/' },
+    { key: 'footer.fleetDoctrines', href: '#' },
+    { key: 'footer.srpGuide', href: '#' },
+    { key: 'footer.newPilotGuide', href: '#' },
+  ];
 
   return (
     <footer className="relative bg-space-black border-t border-primary/30">
@@ -19,9 +34,9 @@ const Footer = () => {
               </div>
               <span className="font-exo font-bold text-lg tracking-wider text-foreground">ADVENT COALITION</span>
             </div>
-            <p className="font-rajdhani text-muted-foreground mb-4">Domination Through Unity</p>
+            <p className="font-rajdhani text-muted-foreground mb-4">{t('footer.tagline')}</p>
             <p className="font-inter text-sm text-muted-foreground mb-6">
-              Elite nullsec alliance forging supremacy across New Eden.
+              {t('footer.description')}
             </p>
             <div className="flex gap-4">
               <a href="https://discord.gg/your-invite" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
@@ -37,12 +52,12 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-rajdhani font-bold text-sm tracking-wider text-foreground mb-4">NAVIGATION</h4>
+            <h4 className="font-rajdhani font-bold text-sm tracking-wider text-foreground mb-4">{t('footer.navigation')}</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
-                <li key={link}>
-                  <a href={`#${link.toLowerCase()}`} className="font-inter text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {link}
+                <li key={link.key}>
+                  <a href={link.href} className="font-inter text-sm text-muted-foreground hover:text-primary transition-colors">
+                    {t(link.key)}
                   </a>
                 </li>
               ))}
@@ -51,12 +66,17 @@ const Footer = () => {
 
           {/* Resources */}
           <div>
-            <h4 className="font-rajdhani font-bold text-sm tracking-wider text-foreground mb-4">RESOURCES</h4>
+            <h4 className="font-rajdhani font-bold text-sm tracking-wider text-foreground mb-4">{t('footer.resources')}</h4>
             <ul className="space-y-2">
               {resources.map((link) => (
-                <li key={link}>
-                  <a href="#" className="font-inter text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {link}
+                <li key={link.key}>
+                  <a 
+                    href={link.href} 
+                    target={link.href.startsWith('http') ? '_blank' : undefined}
+                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="font-inter text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {t(link.key)}
                   </a>
                 </li>
               ))}
@@ -65,19 +85,19 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-rajdhani font-bold text-sm tracking-wider text-foreground mb-4">GET IN TOUCH</h4>
+            <h4 className="font-rajdhani font-bold text-sm tracking-wider text-foreground mb-4">{t('footer.getInTouch')}</h4>
             <ul className="space-y-3">
               <li>
                 <a href="https://discord.gg/your-invite" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-inter text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Discord Server
+                  {t('footer.discordServer')}
                 </a>
               </li>
               <li className="flex items-center gap-2 font-inter text-sm text-muted-foreground">
                 <Mail className="w-4 h-4" />
-                In-game: ADVENT Recruitment
+                {t('footer.inGame')}
               </li>
               <li className="font-inter text-sm text-muted-foreground">
-                24/7 Active (US/EU/ASIA)
+                {t('footer.active247')}
               </li>
             </ul>
           </div>
@@ -86,14 +106,14 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-inter text-xs text-muted-foreground">
-            © 2025 ADVENT COALITION. All rights reserved.
+            {t('footer.copyright')}
           </p>
           <p className="font-inter text-xs text-muted-foreground">
-            Not affiliated with CCP Games
+            {t('footer.notAffiliated')}
           </p>
           <div className="flex gap-4">
-            <a href="#" className="font-inter text-xs text-muted-foreground hover:text-primary">Privacy</a>
-            <a href="#" className="font-inter text-xs text-muted-foreground hover:text-primary">Terms</a>
+            <a href="#" className="font-inter text-xs text-muted-foreground hover:text-primary">{t('footer.privacy')}</a>
+            <a href="#" className="font-inter text-xs text-muted-foreground hover:text-primary">{t('footer.terms')}</a>
           </div>
         </div>
       </div>
