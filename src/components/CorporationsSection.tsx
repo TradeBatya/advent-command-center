@@ -1,13 +1,16 @@
 import { Users, Activity, ExternalLink } from 'lucide-react';
+import { useSettings } from '@/contexts/SettingsContext';
 
 const CorporationsSection = () => {
+  const { t } = useSettings();
+
   const corporations = [
-    { ticker: 'UNTGY', name: 'Unitology Clade', members: 183, focus: 'Main PvP & Operations', status: 'Recruiting', statusColor: 'green' },
-    { ticker: 'VRDOS', name: 'Vardos Prime', members: 35, focus: 'Advanced Operations', status: 'Selective', statusColor: 'yellow' },
-    { ticker: 'PRMST', name: 'The Promise Trust', members: 23, focus: 'Industry & Logistics', status: 'Open', statusColor: 'green' },
-    { ticker: 'APRTR', name: 'Aperture Void Corp', members: 21, focus: 'Exploration & PvE', status: 'Recruiting', statusColor: 'green' },
-    { ticker: 'ANKIS', name: 'Anoikis Consortium', members: 10, focus: 'Wormhole Operations', status: 'Selective', statusColor: 'yellow' },
-    { ticker: 'DRAFT', name: 'Draft Project', members: 9, focus: 'Research & Development', status: 'Private', statusColor: 'red' },
+    { ticker: 'UNTGY', name: 'Unitology Clade', members: 183, focusKey: 'corps.mainPvp', statusKey: 'corps.recruiting', statusColor: 'green' },
+    { ticker: 'VRDOS', name: 'Vardos Prime', members: 35, focusKey: 'corps.advancedOps', statusKey: 'corps.selective', statusColor: 'yellow' },
+    { ticker: 'PRMST', name: 'The Promise Trust', members: 23, focusKey: 'corps.industry', statusKey: 'corps.open', statusColor: 'green' },
+    { ticker: 'APRTR', name: 'Aperture Void Corp', members: 21, focusKey: 'corps.exploration', statusKey: 'corps.recruiting', statusColor: 'green' },
+    { ticker: 'ANKIS', name: 'Anoikis Consortium', members: 10, focusKey: 'corps.wormhole', statusKey: 'corps.selective', statusColor: 'yellow' },
+    { ticker: 'DRAFT', name: 'Draft Project', members: 9, focusKey: 'corps.research', statusKey: 'corps.private', statusColor: 'red' },
   ];
 
   const statusColors: Record<string, string> = {
@@ -24,10 +27,10 @@ const CorporationsSection = () => {
         {/* Title */}
         <div className="text-center mb-16">
           <h2 className="font-exo font-black text-4xl sm:text-5xl tracking-wider text-foreground mb-4">
-            ALLIED <span className="text-primary">CORPORATIONS</span>
+            {t('corps.title')} <span className="text-primary">{t('corps.titleAccent')}</span>
           </h2>
           <div className="w-24 h-1 gradient-red mx-auto mb-4" />
-          <p className="font-rajdhani text-muted-foreground tracking-wider">8 specialized corps united under ADVENT</p>
+          <p className="font-rajdhani text-muted-foreground tracking-wider">{t('corps.subtitle')}</p>
         </div>
 
         {/* Corporations Grid */}
@@ -51,7 +54,7 @@ const CorporationsSection = () => {
                     </div>
                     <div className="flex items-center gap-2">
                       <span className={`w-2 h-2 ${statusColors[corp.statusColor]} rounded-full`} />
-                      <span className="font-inter text-xs text-muted-foreground">{corp.status}</span>
+                      <span className="font-inter text-xs text-muted-foreground">{t(corp.statusKey)}</span>
                     </div>
                   </div>
 
@@ -59,21 +62,21 @@ const CorporationsSection = () => {
                   <div className="flex gap-4 mb-4">
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Users className="w-4 h-4" />
-                      <span className="font-inter text-sm">{corp.members} pilots</span>
+                      <span className="font-inter text-sm">{corp.members} {t('corps.pilots')}</span>
                     </div>
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Activity className="w-4 h-4" />
-                      <span className="font-inter text-sm">Active</span>
+                      <span className="font-inter text-sm">{t('corps.active')}</span>
                     </div>
                   </div>
 
                   {/* Focus Tags */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     <span className="bg-space-panel px-3 py-1 rounded-full text-xs text-muted-foreground">
-                      Nullsec
+                      {t('corps.nullsec')}
                     </span>
                     <span className="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs">
-                      {corp.focus}
+                      {t(corp.focusKey)}
                     </span>
                   </div>
 
