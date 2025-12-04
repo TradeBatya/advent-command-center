@@ -1,10 +1,12 @@
 import { Users, Activity, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useSettings } from '@/contexts/SettingsContext';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay, EffectCreative } from 'swiper/modules';
+import CorporationsModal from './CorporationsModal';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/effect-creative';
 
 const CorporationsSection = () => {
   const { t } = useSettings();
@@ -124,7 +126,7 @@ const CorporationsSection = () => {
           </button>
 
           <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
+            modules={[Navigation, Pagination, Autoplay, EffectCreative]}
             slidesPerView={1}
             spaceBetween={24}
             navigation={{
@@ -143,15 +145,19 @@ const CorporationsSection = () => {
               disableOnInteraction: false,
             }}
             loop={true}
+            speed={600}
             breakpoints={{
               768: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
             }}
             className="!overflow-visible"
           >
-            {corporations.map((corp) => (
-              <SwiperSlide key={corp.ticker}>
-                <div className="glass rounded-lg overflow-hidden group hover:scale-[1.02] transition-all duration-300 glow-border-hover h-full">
+            {corporations.map((corp, index) => (
+              <SwiperSlide key={corp.ticker} className="!h-auto">
+                <div 
+                  className="glass rounded-lg overflow-hidden group hover:scale-[1.02] transition-all duration-300 glow-border-hover h-full swiper-slide-animate"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
                   {/* Left Border Accent */}
                   <div className="flex h-full">
                     <div className="w-1 gradient-red" />
@@ -212,6 +218,11 @@ const CorporationsSection = () => {
 
           {/* Custom Pagination */}
           <div className="swiper-pagination-custom flex justify-center items-center gap-3 mt-8" />
+          
+          {/* View All Button */}
+          <div className="flex justify-center">
+            <CorporationsModal />
+          </div>
         </div>
       </div>
 
@@ -237,6 +248,16 @@ const CorporationsSection = () => {
           border-radius: 5px;
           background: hsl(var(--primary));
           box-shadow: 0 0 10px hsl(var(--primary) / 0.8);
+        }
+
+        .swiper-slide-animate {
+          animation: card-slide-in 0.5s ease-out forwards;
+        }
+
+        .swiper-slide-active .swiper-slide-animate,
+        .swiper-slide-next .swiper-slide-animate,
+        .swiper-slide-prev .swiper-slide-animate {
+          animation: card-slide-in 0.5s ease-out forwards;
         }
       `}</style>
     </section>
