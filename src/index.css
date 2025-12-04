@@ -193,8 +193,45 @@
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes drift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+}
+
+@keyframes nebula-1 {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.15; }
+  50% { transform: scale(1.15) rotate(3deg); opacity: 0.2; }
+}
+
+@keyframes nebula-2 {
+  0%, 100% { transform: scale(1.1) rotate(0deg); opacity: 0.12; }
+  50% { transform: scale(1) rotate(-2deg); opacity: 0.18; }
+}
+
+@keyframes nebula-3 {
+  0%, 100% { transform: scale(1) translateX(0); opacity: 0.1; }
+  50% { transform: scale(1.08) translateX(20px); opacity: 0.15; }
+}
+
+@keyframes light-sweep {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(200%) rotate(45deg); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+@keyframes card-slide-in {
+  0% { opacity: 0; transform: translateX(30px) scale(0.95); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 
 .animate-float {
@@ -224,6 +261,40 @@
 
 .animate-twinkle {
   animation: twinkle 3s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+.animate-drift {
+  animation: drift 25s linear infinite;
+  will-change: transform, opacity;
+}
+
+.animate-nebula-1 {
+  animation: nebula-1 30s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-nebula-2 {
+  animation: nebula-2 25s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-nebula-3 {
+  animation: nebula-3 20s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-light-sweep {
+  animation: light-sweep 15s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-scanline {
+  animation: scanline 0.5s linear infinite;
+}
+
+.animate-card-slide-in {
+  animation: card-slide-in 0.5s ease-out forwards;
 }
 
 /* Scrollbar styling */

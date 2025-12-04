@@ -85,6 +85,7 @@ const translations: Record<Language, Record<string, string>> = {
     'corps.logistics': 'Logistics & Transport',
     'corps.closed': 'Closed',
     'corps.specialized': 'Specialized',
+    'corps.viewAll': 'View All Corporations',
     
     // Recruitment
     'recruit.badge': 'JOIN THE VANGUARD',
@@ -212,6 +213,7 @@ const translations: Record<Language, Record<string, string>> = {
     'corps.logistics': 'Логистика и транспорт',
     'corps.closed': 'Закрыта',
     'corps.specialized': 'Специализированная',
+    'corps.viewAll': 'Показать все корпорации',
     
     // Recruitment
     'recruit.badge': 'ПРИСОЕДИНЯЙТЕСЬ К АВАНГАРДУ',

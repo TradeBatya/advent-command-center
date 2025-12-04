@@ -6,11 +6,13 @@ import OperationsSection from '@/components/OperationsSection';
 import CorporationsSection from '@/components/CorporationsSection';
 import RecruitmentSection from '@/components/RecruitmentSection';
 import Footer from '@/components/Footer';
+import SpaceBackground from '@/components/SpaceBackground';
 
 const Index = () => {
   return (
     <SettingsProvider>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background relative">
+        <SpaceBackground />
         <Navbar />
         <main>
           <HeroSection />
