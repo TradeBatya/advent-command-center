@@ -81,6 +81,10 @@ const translations: Record<Language, Record<string, string>> = {
     'corps.exploration': 'Exploration & PvE',
     'corps.wormhole': 'Wormhole Operations',
     'corps.research': 'Research & Development',
+    'corps.management': 'Alliance Management',
+    'corps.logistics': 'Logistics & Transport',
+    'corps.closed': 'Closed',
+    'corps.specialized': 'Specialized',
     
     // Recruitment
     'recruit.badge': 'JOIN THE VANGUARD',
@@ -204,6 +208,10 @@ const translations: Record<Language, Record<string, string>> = {
     'corps.exploration': 'Исследование и PvE',
     'corps.wormhole': 'Операции в червоточинах',
     'corps.research': 'Исследования и разработки',
+    'corps.management': 'Управление альянсом',
+    'corps.logistics': 'Логистика и транспорт',
+    'corps.closed': 'Закрыта',
+    'corps.specialized': 'Специализированная',
     
     // Recruitment
     'recruit.badge': 'ПРИСОЕДИНЯЙТЕСЬ К АВАНГАРДУ',
