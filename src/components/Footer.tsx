@@ -1,5 +1,6 @@
 import { ExternalLink, Mail } from 'lucide-react';
 import { useSettings } from '@/contexts/SettingsContext';
+import footerLogo from '@/assets/footer-logo.png';
 
 const Footer = () => {
   const { t } = useSettings();
@@ -29,9 +30,11 @@ const Footer = () => {
           {/* Branding */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 gradient-red clip-hexagon flex items-center justify-center">
-                <span className="font-exo font-black text-primary-foreground text-sm">AC</span>
-              </div>
+              <img 
+                src={footerLogo} 
+                alt="ADVENT COALITION" 
+                className="w-12 h-12 object-contain"
+              />
               <span className="font-exo font-bold text-lg tracking-wider text-foreground">ADVENT COALITION</span>
             </div>
             <p className="font-rajdhani text-muted-foreground mb-4">{t('footer.tagline')}</p>
