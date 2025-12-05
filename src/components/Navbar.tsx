@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Palette } from 'lucide-react';
 import { useSettings } from '@/contexts/SettingsContext';
+import allianceLogo from '@/assets/logo.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -28,14 +29,16 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 gradient-red clip-hexagon flex items-center justify-center animate-pulse-glow">
-              <span className="font-exo font-black text-primary-foreground text-sm">AC</span>
-            </div>
-            <span className="font-exo font-bold text-lg tracking-widest text-foreground hidden sm:block">
+          <a href="#home" className="flex items-center gap-3 group">
+            <img 
+              src={allianceLogo} 
+              alt="ADVENT COALITION Logo" 
+              className="w-12 h-12 object-contain transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_8px_hsl(var(--primary)/0.5)]" 
+            />
+            <span className="font-exo font-bold text-lg tracking-widest text-foreground hidden sm:block group-hover:text-primary transition-colors">
               ADVENT COALITION
             </span>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">

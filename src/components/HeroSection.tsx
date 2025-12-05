@@ -1,5 +1,6 @@
 import { ChevronDown, Rocket } from 'lucide-react';
 import { useSettings } from '@/contexts/SettingsContext';
+import allianceLogo from '@/assets/logo.png';
 
 const HeroSection = () => {
   const { t } = useSettings();
@@ -37,6 +38,15 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        {/* Alliance Logo */}
+        <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+          <img 
+            src={allianceLogo} 
+            alt="ADVENT COALITION" 
+            className="w-32 h-32 sm:w-40 sm:h-40 mx-auto object-contain drop-shadow-[0_0_30px_hsl(var(--primary)/0.6)] animate-pulse-glow"
+          />
+        </div>
+
         {/* Badge */}
         <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
           <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
